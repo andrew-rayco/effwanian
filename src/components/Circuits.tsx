@@ -46,7 +46,6 @@ const Circuits = () => {
     );
   };
 
-  console.log('circuits', circuits);
   if (isLoading) return <Loading />;
 
   return (
