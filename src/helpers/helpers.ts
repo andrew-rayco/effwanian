@@ -1,4 +1,12 @@
-import { QualiDataFull, QualiResponse, QualiResult, QualiResultResponse } from '../types/api';
+import {
+  GridResponse,
+  QualiDataFull,
+  QualiResponse,
+  QualiResult,
+  QualiResultResponse,
+  ResultsData,
+  ResultsDataFull,
+} from '../types/api';
 
 export const compareCircuits = (a: any, b: any) => {
   const aCountry = a.Location.country;
@@ -56,16 +64,16 @@ const compareGridPos = (a: any, b: any) => {
 
 const sortGrid = (gridData: any) => {
   gridData.forEach((result: any) => {
-    if (result.grid === 0) {
+    if (result.grid === '0') {
       result.grid = 99;
     }
   });
-  gridData.sort(compareGridPos);
   gridData.forEach((result: any) => {
     if (result.grid === 99) {
       result.grid = 'Pit';
     }
   });
+  gridData.sort(compareGridPos);
   return gridData;
 };
 
@@ -91,4 +99,47 @@ export const mapGridData = (data: any) => {
   };
 
   return cleanData;
+};
+
+export const mapResultsData = (data: GridResponse) => {
+  let resultData: ResultsData[] = [];
+  data.Results.map((result: any) => {
+    const { position, Driver, Constructor, Time, status, FastestLap, positionText, laps } = result;
+    resultData.push({
+      position: position,
+      driverUrl: Driver.url,
+      forename: Driver.givenName,
+      surname: Driver.familyName,
+      constructorUrl: Constructor.url,
+      constructorName: Constructor.name,
+      raceTime: Time ? Time.time : status,
+      laps: laps,
+      fastestLapTime: FastestLap ? FastestLap.Time.time : '-',
+      fastestLapSpeed: FastestLap ? FastestLap.AverageSpeed.speed : null,
+      fastestLapNumber: FastestLap ? FastestLap.lap : null,
+      status: status,
+      positionText: positionText,
+    });
+  });
+
+  let cleanResultsData: ResultsDataFull = {
+    raceYear: data.season,
+    raceName: data.raceName,
+    results: resultData,
+  };
+
+  return cleanResultsData;
+};
+
+export const findFastestLap = (resultsArray: ResultsData[]) => {
+  let fastestLapTime = '0';
+  let fastestLapSpeed = '0';
+  resultsArray.forEach((singleResult) => {
+    if (singleResult.fastestLapSpeed && Number(singleResult.fastestLapSpeed) >= Number(fastestLapSpeed)) {
+      fastestLapSpeed = singleResult.fastestLapSpeed;
+      fastestLapTime = singleResult.fastestLapTime;
+    }
+  });
+
+  return fastestLapTime;
 };

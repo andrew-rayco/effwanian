@@ -4,7 +4,7 @@ import { Race } from '../types/api';
 
 import Grid from './Grid';
 import Quali from './Quali';
-// import Results from './Results';
+import Results from './Results';
 
 type RaceOptionsProps = {
   race: Race;
@@ -91,7 +91,6 @@ const RaceOptions = ({ race, initialVisibility, intro }: RaceOptionsProps) => {
             </p>
 
             {visibility.gridVisible ? <Grid season={race.season} round={race.round} /> : null}
-            {/* {visibility.gridVisible ? <div>GRID visible</div> : null} */}
 
             {/* Long wait fetching laptimes from Ergast API. Disable feature for now */}
             {/* {this.props.intro ? null : this.visualise(race)} */}
@@ -102,10 +101,7 @@ const RaceOptions = ({ race, initialVisibility, intro }: RaceOptionsProps) => {
               </button>
             </p>
 
-            {/* {visibility.resultsVisible ? (
-              <Results season={race.year || race.season} round={race.round} raceName={race.raceName} />
-            ) : null} */}
-            {visibility.resultsVisible ? <div>RESULTS visible</div> : null}
+            {visibility.resultsVisible ? <Results season={race.season} round={race.round} /> : null}
 
             <p>
               <a href={race.url}>
