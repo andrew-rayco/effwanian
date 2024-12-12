@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Race } from '../types/api';
 
 // import Grid from './Grid';
-// import Quali from './Quali';
+import Quali from './Quali';
 // import Results from './Results';
 
 type RaceOptionsProps = {
@@ -70,25 +70,24 @@ const RaceOptions = ({ race, initialVisibility, intro }: RaceOptionsProps) => {
       <div key={race.round} className="row single-round">
         <div className={`twelve columns round ${race.round}`}>
           <h4 onClick={(e) => toggleHidden(e, race.round)}>
-            <a href="#">
+            <button className="race-title">
               {intro ? `${intro} the ${race.season} ${race.raceName}` : `${race.round} - ${race.raceName}`}
-            </a>
+            </button>
           </h4>
           <div id={race.round} className={`toggle hidden`}>
             <p>{moment(race.date).format('MMMM Do YYYY')}</p>
             <p>
-              <a onClick={(e) => handleClick(e, 'qualiVisible')} href="#" className="togglable">
+              <button onClick={(e) => handleClick(e, 'qualiVisible')} className="button-link">
                 Qualifying results <img className="toggle-icon" src="../images/down-arrow.svg" alt="read more icon" />
-              </a>
+              </button>
             </p>
 
-            {/* {visibility.qualiVisible ? <Quali season={race.year || race.season} round={race.round} /> : null} */}
-            {visibility.qualiVisible ? <div>QUALI visibile</div> : null}
+            {visibility.qualiVisible ? <Quali season={race.season || race.season} round={race.round} /> : null}
 
             <p>
-              <a onClick={(e) => handleClick(e, 'gridVisible')} href="#" className="togglable">
+              <button onClick={(e) => handleClick(e, 'gridVisible')} className="button-link">
                 Starting grid <img className="toggle-icon" src="../images/down-arrow.svg" alt="read more icon" />
-              </a>
+              </button>
             </p>
 
             {/* {visibility.gridVisible ? <Grid season={race.year || race.season} round={race.round} /> : null} */}
@@ -98,9 +97,9 @@ const RaceOptions = ({ race, initialVisibility, intro }: RaceOptionsProps) => {
             {/* {this.props.intro ? null : this.visualise(race)} */}
 
             <p>
-              <a onClick={(e) => handleClick(e, 'resultsVisible')} href="#" className="togglable">
+              <button onClick={(e) => handleClick(e, 'resultsVisible')} className="button-link">
                 Results <img className="toggle-icon" src="../images/down-arrow.svg" alt="read more icon" />
-              </a>
+              </button>
             </p>
 
             {/* {visibility.resultsVisible ? (

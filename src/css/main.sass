@@ -51,12 +51,12 @@ p
   text-align: center
   text-transform: uppercase
 
-a
+a, .button-link
   color: #56bba7
   letter-spacing: 2px
   text-decoration: none
 
-a:hover
+a:hover, .button-link:hover
   color: #272623
   transition: .15s color ease-in
 
@@ -68,6 +68,18 @@ table
 
 .container
   margin: 30px auto
+
+  &-border
+    border-top: 1px solid #ddd
+    border-bottom: 1px solid #ddd
+    padding: 30px 0
+    margin: 30px 0
+    background: #EBEDE7
+    box-shadow: inset 0px 11px 20px -10px #ddd, inset 0 -11px 20px -10px #ddd
+
+    p
+      font-size: 13px
+      text-decoration: none
 
 .main-header
   color: #272623
@@ -190,7 +202,16 @@ table
   background: #EBEDE7
   margin-top: 1em
   padding-top: 1em
-  box-shadow: inset 0px 11px 20px -10px #ccc, inset 0 -11px 20px -10px #ccc
+  box-shadow: inset 0px 11px 20px -10px #ddd, inset 0 -11px 20px -10px #ddd
+
+button.button-link
+  border: none
+  font-size: 18px
+  font-weight: 300
+  padding: 0
+  margin: 0
+  line-height: 24px
+  max-height: 24px
 
 .toggle-image
   display: inline
@@ -213,6 +234,16 @@ table
 .toggle p:first-of-type
   margin-bottom: 1em
 
+.race-title
+  color: #56bba7
+  font-size: 22px
+  font-weight: 300
+  letter-spacing: 0px
+  border: none
+  letter-spacing: 2px
+  text-decoration: none
+  text-transform: none
+
 .quali-results,
 .grid,
 .results
@@ -223,7 +254,6 @@ table
   animation: fadeIn 1s
 
 .no-data
-//  /*color: #3A3937*/
   padding: 2em
   max-width: 50%
   margin: 0 auto
