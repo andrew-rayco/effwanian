@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { Race } from '../types/api';
 
-// import Grid from './Grid';
+import Grid from './Grid';
 import Quali from './Quali';
 // import Results from './Results';
 
@@ -82,7 +82,7 @@ const RaceOptions = ({ race, initialVisibility, intro }: RaceOptionsProps) => {
               </button>
             </p>
 
-            {visibility.qualiVisible ? <Quali season={race.season || race.season} round={race.round} /> : null}
+            {visibility.qualiVisible ? <Quali season={race.season} round={race.round} /> : null}
 
             <p>
               <button onClick={(e) => handleClick(e, 'gridVisible')} className="button-link">
@@ -90,8 +90,8 @@ const RaceOptions = ({ race, initialVisibility, intro }: RaceOptionsProps) => {
               </button>
             </p>
 
-            {/* {visibility.gridVisible ? <Grid season={race.year || race.season} round={race.round} /> : null} */}
-            {visibility.gridVisible ? <div>GRID visible</div> : null}
+            {visibility.gridVisible ? <Grid season={race.season} round={race.round} /> : null}
+            {/* {visibility.gridVisible ? <div>GRID visible</div> : null} */}
 
             {/* Long wait fetching laptimes from Ergast API. Disable feature for now */}
             {/* {this.props.intro ? null : this.visualise(race)} */}

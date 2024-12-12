@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useQualifying } from '../api/apiHelpers';
+import { useQualifying } from '../api/quali';
 import { QualiDataFull, QualiResult } from '../types/api';
 import NoData from './NoData';
 import ApiStatus from './ApiStatus';

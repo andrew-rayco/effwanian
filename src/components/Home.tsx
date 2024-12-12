@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSeasons } from '../api/apiHelpers';
+import { useSeasons } from '../api/seasons';
 import Loading from './Loading';
 import ListSeason from './ListSeason';
 import { SeasonBasic } from '../types/api';

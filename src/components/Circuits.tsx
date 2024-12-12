@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Loading from './Loading';
-import { useCircuits } from '../api/apiHelpers';
+import { useCircuits } from '../api/circuits';
 import { Circuit } from '../types/api';
 
 const Circuits = () => {

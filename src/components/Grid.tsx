@@ -2,7 +2,8 @@ import React from 'react';
 
 import RaceOptions from './RaceOptions';
 import NoData from './NoData';
-import { useGrid } from '../api/apiHelpers';
+import { useGrid } from '../api/grid';
+import ApiStatus from './ApiStatus';
 
 type GridProps = {
   season: string;
@@ -11,6 +12,8 @@ type GridProps = {
 
 const Grid = ({ season, round }: GridProps) => {
   const { data: grid, error, isLoading } = useGrid(season, round);
+
+  if (isLoading || error) return <ApiStatus isLoading={isLoading} error={error} />;
 
   console.log('grid', grid);
 
@@ -77,3 +80,5 @@ const Grid = ({ season, round }: GridProps) => {
   // return <div className="grid sub-section">{grid && !grid.noData ? buildGridTable() : <NoData />}</div>;
   return <div>Hello</div>;
 };
+
+export default Grid;

@@ -3,7 +3,7 @@ import React from 'react';
 import Loading from './Loading';
 import Error from './Error';
 import RaceOptions from './RaceOptions';
-import { useSingleSeason } from '../api/apiHelpers';
+import { useSingleSeason } from '../api/singleSeason';
 import { Race } from '../types/api';
 
 const FullSeason = () => {
