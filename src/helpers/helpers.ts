@@ -103,7 +103,7 @@ export const mapGridData = (data: any) => {
 
 export const mapResultsData = (data: GridResponse) => {
   let resultData: ResultsData[] = [];
-  data.Results.map((result: any) => {
+  data.Results.forEach((result: any) => {
     const { position, Driver, Constructor, Time, status, FastestLap, positionText, laps } = result;
     resultData.push({
       position: position,

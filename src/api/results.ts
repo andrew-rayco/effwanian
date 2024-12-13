@@ -8,7 +8,7 @@ import { ResultsDataFull } from '../types/api';
 // Results - e.g. http://ergast.com/api/f1/2017/15/results.json
 const fetchResults = async ({ queryKey }: QueryFunctionContext<string[]>) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [season, raceRound] = queryKey;
+  const [_, season, raceRound] = queryKey;
 
   const response = await axios.get(`${API_URL}${season}/${raceRound}/results.json`);
   const data = response.data.MRData.RaceTable.Races[0];
@@ -17,7 +17,7 @@ const fetchResults = async ({ queryKey }: QueryFunctionContext<string[]>) => {
 
 export const useResults = (season: string, raceRound: string): UseQueryResult<ResultsDataFull> => {
   return useQuery({
-    queryKey: [season, raceRound],
+    queryKey: ['results', season, raceRound],
     queryFn: fetchResults,
   });
 };
